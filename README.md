@@ -9,7 +9,7 @@ This is a feature I really want implemented into the base game. Right now, if mo
 
 Azaleas can still be obtained! When an azalea tree's leaves decay, azaleas drop like saplings. This is a part of the vanilla game, however because of the moss mechanic there really isn't a need to do this.
 
-## Okay, but still how do you get azaleas now?
+## Okay, but still; how do you get azaleas now?
 
 Two world gen features have been added with this mod: Moss patches generate randomly throughout the world, and Azalea Trees spawn randomly throughout the world. Moss patches have a 1/20 chance to spawn per chunk, and Azalea Trees have a 1/1024 chance to spawn. The azalea tree chance may seem extremely low, but it equates to about one Azalea Tree for a 32 by 32 chunk area, which I find decently reasonable.
 
