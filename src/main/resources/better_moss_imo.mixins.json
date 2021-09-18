@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "fireopal.bettermoss.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "BlocksMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
