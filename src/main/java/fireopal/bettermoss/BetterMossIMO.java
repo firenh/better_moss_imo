@@ -17,6 +17,8 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.BuiltinBiomes;
 import net.minecraft.world.gen.decorator.HeightmapDecoratorConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.ConfiguredFeatures;
@@ -49,12 +51,16 @@ public class BetterMossIMO implements ModInitializer {
 		.decorate(Decorator.HEIGHTMAP.configure(new HeightmapDecoratorConfig(Heightmap.Type.WORLD_SURFACE_WG))).spreadHorizontally().applyChance(20);
 
 	public static ConfiguredFeature<?, ?> AZALEA_TREE_NEW_SURFACE = ConfiguredFeatures.AZALEA_TREE.decorate(Decorator.HEIGHTMAP.configure(new HeightmapDecoratorConfig(Heightmap.Type.WORLD_SURFACE_WG))).spreadHorizontally().applyChance(1024);
+	public static ConfiguredFeature<?, ?> AZALEA_TREE_NEW_SURFACE_FLOWER_FOREST = ConfiguredFeatures.AZALEA_TREE.decorate(Decorator.HEIGHTMAP.configure(new HeightmapDecoratorConfig(Heightmap.Type.WORLD_SURFACE_WG))).spreadHorizontally().applyChance(64);
 
 	RegistryKey<ConfiguredFeature<?, ?>> mossPatchSurface = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
         new Identifier("better_moss_imo", "moss_patch_surface"));
 
 	RegistryKey<ConfiguredFeature<?, ?>> azaleaTreeSurface = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
         new Identifier("better_moss_imo", "azalea_tree_surface"));
+
+	RegistryKey<ConfiguredFeature<?, ?>> azaleaTreeSurfaceFlowerForest = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
+        new Identifier("better_moss_imo", "azalea_tree_surface_flower_forest"));
 
 	@Override
 	public void onInitialize() {
@@ -66,8 +72,10 @@ public class BetterMossIMO implements ModInitializer {
 
 		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, mossPatchSurface.getValue(), MOSS_PATCH_SURFACE);
 		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, azaleaTreeSurface.getValue(), AZALEA_TREE_NEW_SURFACE);
+		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, azaleaTreeSurfaceFlowerForest.getValue(), AZALEA_TREE_NEW_SURFACE_FLOWER_FOREST);
 
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, mossPatchSurface);
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.VEGETAL_DECORATION, azaleaTreeSurface);
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.FLOWER_FOREST), GenerationStep.Feature.VEGETAL_DECORATION, azaleaTreeSurfaceFlowerForest);
 	}
 }
